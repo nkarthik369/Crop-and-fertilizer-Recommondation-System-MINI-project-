@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop and Fertilizer Recommendation Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            background-image: url('https://media.istockphoto.com/id/1126962479/photo/hand-watering-young-plants-in-growing.jpg?s=2048x2048&w=is&k=20&c=u5btNvL0EGnI_NNYSUvuPPYbFbcdY2ozs1NGc0zDAIg='); /* New background image */
+            background-size: cover; /* Cover the entire body */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent repeating */
+            margin: 0; /* Remove default margin */
+            font-family: Arial, sans-serif; /* Set a default font */
+        }
+
+        .container {
+            width: 600px; /* Adjust width as needed */
+            margin: auto; /* Center the container */
+            padding: 20px; /* Add some padding */
+            border: 1px solid #ccc; /* Optional: border for better visibility */
+            border-radius: 5px; /* Optional: rounded corners */
+            text-align: left; /* Align text to the left */
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+        }
+
+        h1 {
+            font-size: 22px; /* Adjusted font size for the heading */
+            text-align: center; /* Center heading */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+
+        ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove padding */
+        }
+
+        li {
+            margin-bottom: 10px; /* Space between list items */
+        }
+
+        .accuracy {
+            margin-top: 20px; /* Space above accuracy section */
+            font-weight: bold; /* Make accuracy text bold */
+        }
+
+        a {
+            display: block; /* Make link a block element */
+            text-align: center; /* Center link */
+            margin-top: 20px; /* Space above link */
+            text-decoration: none; /* Remove underline */
+            color: #4CAF50; /* Link color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recommended Crops</h1>
+        <ul>
+            {% for crop, prob in crops %}
+            <li>Crop: {{ crop }}, Probability: {{ prob }}</li>
+            {% endfor %}
+        </ul>
+
+        <h1>Fertilizer Recommendations</h1>
+        <ul>
+            {% for recommendation in fertilizers %}
+            <li>{{ recommendation }}</li>
+            {% endfor %}
+        </ul>
+
+        <div class="accuracy">
+            <p>Model Accuracy: {{ model_accuracy }}%</p>
+            <p>Input-Specific Accuracy: {{ input_accuracy }}%</p>
+        </div>
+
+        <a href="/">Go Back</a>
+    </div>
+</body>
+</html>
